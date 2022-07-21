@@ -12,9 +12,9 @@ export default new Vuex.Store({
   },
   getters: {
     cartPriceWithCur(state) {
-      const price = state.cart
-        .reduce((acc, item) => acc + Math.round(item.amount * item.price * 100) / 100, 0);
-      return `${price} ${state.currency}`;
+      const cartPrice = state.cart
+        .reduce((acc, item) => acc + item.amount * item.price, 0);
+      return `${cartPrice.toFixed(2)} ${state.currency}`;
     },
   },
   mutations: {
@@ -23,24 +23,21 @@ export default new Vuex.Store({
       state.products = products;
     },
     addToCart(state, newItem) {
-      const exisingItemIndex = state.cart.find((item) => item.id === newItem.id);
+      const exisingItemIndex = state.cart.findIndex((item) => item.id === newItem.id);
 
       if (exisingItemIndex >= 0) {
-        const existingItem = state.cart[exisingItemIndex];
-        state.cart.splice(exisingItemIndex, 1, {
-          ...existingItem,
-          amount: existingItem.amount + newItem.amount,
+        const [updatedItem] = state.cart.splice(exisingItemIndex, 1);
+
+        state.cart.push({
+          ...updatedItem,
+          amount: updatedItem.amount + newItem.amount,
         });
       } else {
-        state.cart.push(newItem);
+        state.cart.push({ ...newItem });
       }
     },
     removeFromCart(state, itemId) {
-      const exisingItemIndex = state.cart.find((item) => item.id === itemId);
-
-      if (exisingItemIndex >= 0) {
-        state.cart.splice(exisingItemIndex, 1);
-      }
+      state.cart = state.cart.filter((item) => item.id !== itemId);
     },
     clearCart(state) {
       state.cart = [];
