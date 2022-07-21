@@ -3,7 +3,7 @@ import { PRODUCTS } from './mocs';
 const SLEEP_TIME = 200;
 
 function sleep(fn) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(fn()), SLEEP_TIME);
   });
 }
