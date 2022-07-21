@@ -1,7 +1,7 @@
-const SLEEP_TIME = 200;
+const SLEEP_TIME = 200; // Поставил бы пробел после этой строки дабы логически отделить константы от функций
 function sleep(fn) {
   return new Promise(resolve => {
-    setTimeout(() => {
+    setTimeout(() => { // можно сократить запись до SetTimeout(() => resolve(fn()), SLEEP_TIME);
       resolve(fn());
     }, SLEEP_TIME);
   });
@@ -9,6 +9,9 @@ function sleep(fn) {
 
 const dataService = {
   getProductsList() {
+    // 1. Это констанста (const а не let).
+    // 2. Она лишняя. Можно сразу возвращать массив.
+    // 3. Выделил бы массив (products) в в отдельный файл с моками (/api/mocks.js).
     let products = [
       {
         id: 'potato',
@@ -37,5 +40,5 @@ const productsApi = {
   getProductsList() {
     return sleep(dataService.getProductsList);
   },
-};
+}; // Не хватает пробела перед экспортом
 export default productsApi;
