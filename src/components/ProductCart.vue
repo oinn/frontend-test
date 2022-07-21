@@ -27,3 +27,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.cart-list {
+  padding: 0 10px;
+}
+</style>
