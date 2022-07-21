@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export const PRODUCTS = [
   {
     id: 'potato',
@@ -16,5 +17,5 @@ export const PRODUCTS = [
     title: 'Капуста',
     price: 28.50,
     image: '/products/cabbage.jpg',
-  }
+  },
 ];
