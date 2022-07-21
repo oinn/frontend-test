@@ -11,5 +11,11 @@
   "parserOptions": {
     "ecmaVersion": 2021
   },
-  "rules": {}
+  "rules": {
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": { "max": 4 },
+      "multiline": { "max": 2 }
+    }],
+    "vue/singleline-html-element-content-newline": ["off", {}]
+  }
 }
